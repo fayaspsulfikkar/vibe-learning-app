@@ -4,67 +4,51 @@ import { User, Mail, Calendar, Key } from 'lucide-react';
 
 export default function Account() {
   const { user } = useAuth();
-  
   if (!user) return null;
 
-  const joinDate = new Date(user.joinedAt).toLocaleDateString('en-US', {
-    month: 'long', day: 'numeric', year: 'numeric'
-  });
+  const joinDate = new Date(user.joinedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
   return (
     <div className="fade-in">
-      <header style={{ marginBottom: '40px' }}>
-        <h1 style={{ fontSize: '36px', marginBottom: '8px' }}>Account Settings</h1>
-        <p style={{ color: 'var(--muted)', fontSize: '16px' }}>Manage your personal information and preferences.</p>
+      <header style={{ marginBottom: '56px', marginTop: '8px' }}>
+        <h1 style={{ fontSize: '32px', fontWeight: 300, marginBottom: '12px', letterSpacing: '-0.02em' }}>Account Settings</h1>
+        <p style={{ color: 'var(--muted)', fontSize: '15px', fontWeight: 400, letterSpacing: '0.01em' }}>Manage your personal information and preferences.</p>
       </header>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(300px, 1fr) 2fr', gap: '32px' }}>
-        {/* Profile Card Summary */}
-        <div className="glass-panel" style={{ padding: '32px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', height: 'fit-content' }}>
-          <div style={{ width: '96px', height: '96px', borderRadius: '50%', background: 'linear-gradient(135deg, var(--primary), var(--accent))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '36px', fontWeight: 700, color: '#fff', marginBottom: '20px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '48px' }}>
+        <div className="glass-panel" style={{ padding: '48px 32px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+          <div style={{ width: '100px', height: '100px', borderRadius: '50%', background: 'rgba(200, 240, 96, 0.08)', border: '1px solid rgba(200, 240, 96, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '36px', fontWeight: 300, color: 'var(--accent)', marginBottom: '24px' }}>
              {user.name.charAt(0).toUpperCase()}
           </div>
-          <h2 style={{ fontSize: '24px', marginBottom: '4px' }}>{user.name}</h2>
-          <p style={{ color: 'var(--muted)', marginBottom: '8px' }}>{user.email}</p>
-          <div className="badge badge-accent" style={{ marginTop: '12px' }}>Pro Student</div>
+          <h2 style={{ fontSize: '28px', fontWeight: 300, marginBottom: '8px' }}>{user.name}</h2>
+          <p style={{ color: 'var(--muted)', marginBottom: '16px', fontSize: '14px', fontWeight: 400 }}>{user.email}</p>
+          <div className="badge badge-accent" style={{ marginTop: '16px', padding: '6px 16px', borderRadius: '20px', fontWeight: 500 }}>Pro Student</div>
         </div>
 
-        {/* Details Form */}
-        <div className="glass-panel" style={{ padding: '32px' }}>
-          <h3 style={{ fontSize: '20px', marginBottom: '24px', borderBottom: '1px solid var(--border)', paddingBottom: '16px' }}>Personal Details</h3>
+        <div className="glass-panel" style={{ padding: '48px 40px' }}>
+          <h3 style={{ fontSize: '14px', fontWeight: 500, marginBottom: '40px', color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Personal Details</h3>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
             <div>
-              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', marginBottom: '8px', color: 'var(--muted)', fontWeight: 500 }}>
-                <User size={16} /> Full Name
+              <label style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '13px', marginBottom: '12px', color: 'var(--muted)', fontWeight: 400 }}>
+                <User size={16} opacity={0.6} /> Full Name
               </label>
-              <input type="text" defaultValue={user.name} style={{ width: '100%', background: 'var(--surface2)' }} disabled />
+              <input type="text" defaultValue={user.name} style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.08)', padding: '8px 0', fontSize: '16px', fontWeight: 300, borderRadius: 0, color: 'var(--text)' }} disabled />
             </div>
             
             <div>
-              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', marginBottom: '8px', color: 'var(--muted)', fontWeight: 500 }}>
-                <Mail size={16} /> Email Address
+              <label style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '13px', marginBottom: '12px', color: 'var(--muted)', fontWeight: 400 }}>
+                <Mail size={16} opacity={0.6} /> Email Address
               </label>
-              <input type="email" defaultValue={user.email} style={{ width: '100%', background: 'var(--surface2)' }} disabled />
+              <input type="email" defaultValue={user.email} style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.08)', padding: '8px 0', fontSize: '16px', fontWeight: 300, borderRadius: 0, color: 'var(--text)' }} disabled />
             </div>
             
             <div>
-              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', marginBottom: '8px', color: 'var(--muted)', fontWeight: 500 }}>
-                <Calendar size={16} /> Member Since
+              <label style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '13px', marginBottom: '12px', color: 'var(--muted)', fontWeight: 400 }}>
+                <Calendar size={16} opacity={0.6} /> Member Since
               </label>
-              <input type="text" defaultValue={joinDate} style={{ width: '100%', background: 'var(--surface2)' }} disabled />
+              <input type="text" defaultValue={joinDate} style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.08)', padding: '8px 0', fontSize: '16px', fontWeight: 300, borderRadius: 0, color: 'var(--text)' }} disabled />
             </div>
-
-            <div>
-              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', marginBottom: '8px', color: 'var(--muted)', fontWeight: 500 }}>
-                <Key size={16} /> Account ID
-              </label>
-              <input type="text" defaultValue={user.id} style={{ width: '100%', background: 'var(--surface2)' }} disabled />
-            </div>
-          </div>
-          
-          <div style={{ marginTop: '32px', paddingTop: '24px', borderTop: '1px solid var(--border)' }}>
-            <button className="btn-primary">Update Profile</button>
           </div>
         </div>
       </div>

@@ -232,11 +232,11 @@ input:focus, textarea:focus, select:focus {
   border-bottom: 1px solid var(--border);
 }
 .phase-header {
-  padding: 32px 60px 28px;
-  border-bottom: 1px solid var(--border);
+  padding: 40px 60px 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
   display: flex;
   align-items: flex-start;
-  gap: 20px;
+  gap: 24px;
   cursor: pointer;
   user-select: none;
   transition: background 0.15s;
@@ -274,7 +274,7 @@ input:focus, textarea:focus, select:focus {
 .phase-body.open { display: block; }
 
 .week-card {
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
 }
 .week-head {
   display: flex;
@@ -317,28 +317,29 @@ input:focus, textarea:focus, select:focus {
 .week-body.open { display: block; }
 
 .sec-label {
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
-  padding: 20px 0 8px;
+  padding: 32px 0 16px;
   display: block;
 }
 
-.task-list { list-style: none; border: 1px solid var(--border2); border-radius: 6px; overflow: hidden; }
+.task-list { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-bottom: 16px; }
 .task-item {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
-  padding: 13px 16px;
-  border-bottom: 1px solid var(--border);
-  transition: background 0.12s;
+  gap: 20px;
+  padding: 20px 24px;
+  border: 1px solid rgba(255,255,255,0.03);
+  border-radius: var(--radius-md);
+  background: rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
 }
-.task-item:last-child { border-bottom: none; }
-.task-item:hover { background: var(--surface2); }
+.task-item:hover { background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.08); }
 .task-item.done {
-  background: var(--done-bg);
-  border-bottom-color: var(--done-border);
+  background: rgba(200, 240, 96, 0.02);
+  border-color: rgba(200, 240, 96, 0.1);
 }
 
 .task-check {
