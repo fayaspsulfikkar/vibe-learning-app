@@ -119,26 +119,32 @@ export default function Attendance() {
           {attendance.length === 0 ? (
             <p className="page-desc" style={{ textAlign: 'center', padding: '60px 0' }}>No attendance sessions recorded yet. Start learning!</p>
           ) : (
-            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '24px', height: '200px', paddingBottom: '24px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '8px', height: '180px', paddingBottom: '32px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
               {attendance.slice(-14).map((record, idx) => {
                 const heightPct = Math.max((record.minutes / maxMinutes) * 100, 5);
+                // Parse the localized date (e.g. "4/28/2026") into a readable "Apr 28" label
+                const dateObj = new Date(record.date);
+                const dayLabel = isNaN(dateObj)
+                  ? record.date
+                  : dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
                 return (
-                  <div key={idx} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+                  <div key={idx} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <div style={{ 
-                      width: '100%', 
-                      maxWidth: '40px',
+                      width: '100%',
                       height: `${heightPct}%`, 
-                      background: 'rgba(96, 184, 240, 0.15)', 
-                      borderRadius: 'var(--radius-sm) var(--radius-sm) 0 0',
+                      background: 'var(--primary-glow)',
+                      borderTop: '1px solid var(--primary)',
+                      borderRadius: '3px 3px 0 0',
                       transition: 'height 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
-                      position: 'relative'
+                      position: 'relative',
+                      minHeight: '4px'
                     }}>
-                       <span style={{ position: 'absolute', top: '-24px', left: '50%', transform: 'translateX(-50%)', fontSize: '11px', color: 'var(--text)', fontWeight: 400 }}>
-                          {record.minutes}
+                       <span style={{ position: 'absolute', top: '-20px', left: '50%', transform: 'translateX(-50%)', fontSize: '10px', color: 'var(--muted2)', whiteSpace: 'nowrap' }}>
+                          {record.minutes}m
                        </span>
                     </div>
-                    <span style={{ fontSize: '11px', color: 'var(--muted2)', transform: 'rotate(-45deg)', transformOrigin: 'top left', marginTop: '12px', whiteSpace: 'nowrap' }}>
-                      {record.date.slice(0, 5)}
+                    <span style={{ fontSize: '9px', color: 'var(--muted)', marginTop: '8px', whiteSpace: 'nowrap' }}>
+                      {dayLabel}
                     </span>
                   </div>
                 );
