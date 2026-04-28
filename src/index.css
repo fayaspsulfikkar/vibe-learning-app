@@ -30,9 +30,9 @@
   --font-main: 'IBM Plex Mono', monospace;
   --font-head: 'Fraunces', serif;
   
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 12px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -92,9 +92,12 @@ input:focus, textarea:focus, select:focus {
 }
 
 .glass-panel {
-  background: var(--surface);
-  border: 1px solid var(--border2);
+  background: rgba(20, 20, 20, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.06);
   border-radius: var(--radius-md);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
 }
 
 .btn-primary {
@@ -496,10 +499,11 @@ input:focus, textarea:focus, select:focus {
     margin-right: -20px;
   }
   .hero {
-    padding: 40px 20px 30px !important;
+    padding: 30px 20px 24px !important;
   }
   .hero h1 {
-    font-size: 28px !important;
+    font-size: 32px !important;
+    font-weight: 300 !important;
   }
   .phase-header {
     padding: 24px 20px 20px !important;
@@ -514,12 +518,16 @@ input:focus, textarea:focus, select:focus {
   }
   .week-title {
     font-size: 13px !important;
+    font-weight: 400 !important;
   }
   .week-body {
     padding: 0 20px 20px !important;
   }
   .task-item {
-    padding: 12px 12px !important;
+    padding: 16px 14px !important;
+  }
+  .glass-panel {
+    padding: 24px !important;
   }
 }
 
