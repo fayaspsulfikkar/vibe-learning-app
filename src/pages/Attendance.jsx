@@ -24,12 +24,18 @@ export default function Attendance() {
        }
     });
 
-    // Start from user's join date, end today
+    // Start from user's join date; always show at least 180 days (full course)
+    // so react-activity-calendar always has enough data to render properly
     const today = new Date();
-    const start = user.joinedAt ? parseISO(user.joinedAt.slice(0, 10)) : today;
-    const days = eachDayOfInterval({ start, end: today });
+    const joinDate = user.joinedAt ? parseISO(user.joinedAt.slice(0, 10)) : today;
 
-    // react-activity-calendar requires at least 2 entries and sorted ASC
+    // End = whichever is later: today, or join + 180 days
+    const courseEnd = new Date(joinDate);
+    courseEnd.setDate(courseEnd.getDate() + 180);
+    const end = courseEnd > today ? courseEnd : today;
+
+    const days = eachDayOfInterval({ start: joinDate, end });
+
     return days.map(d => {
       const dateStr = format(d, 'yyyy-MM-dd');
       const count = dateCounts[dateStr] || 0;
