@@ -1,28 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap');
 
 :root {
-  --bg: #0c0c0c;
-  --surface: #141414;
-  --surface2: #1a1a1a;
-  --surface3: #202020;
-  --border: #252525;
-  --border2: #303030;
-  --text: #e6e2da;
-  --muted: #555;
-  --muted2: #888;
-  --muted3: #aaa;
+  --bg: #0d0d1a;
+  --surface: #121220;
+  --surface2: #181828;
+  --surface3: #1e1e30;
+  --border: #252540;
+  --border2: #2e2e50;
+  --text: #e8e6f0;
+  --muted: #5a5878;
+  --muted2: #8884a8;
+  --muted3: #b0aec8;
   
   --accent: #c8f060;
   --accent2: #a0c840;
-  --accent-glow: rgba(200, 240, 96, 0.04);
+  --accent-glow: rgba(200, 240, 96, 0.06);
   
-  --primary: #60b8f0;
-  --primary-glow: rgba(96, 184, 240, 0.12);
+  --primary: #818cf8;
+  --primary-glow: rgba(129, 140, 248, 0.15);
   
-  --warn: #f0a050;
-  --info: #60b8f0;
-  --success: #5dd8a8;
-  --danger: #ef4444;
+  --warn: #fb923c;
+  --info: #38bdf8;
+  --success: #34d399;
+  --danger: #f87171;
 
   --done-bg: #141f0a;
   --done-border: #2a4010;
