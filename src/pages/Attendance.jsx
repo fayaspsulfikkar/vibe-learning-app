@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Clock, TrendingUp, Award } from 'lucide-react';
 import { ActivityCalendar } from 'react-activity-calendar';
-import { subDays, format } from 'date-fns';
+import { eachDayOfInterval, format, parseISO } from 'date-fns';
 
 export default function Attendance() {
   const { attendance, studyTime, user } = useAuth();
@@ -24,22 +24,22 @@ export default function Attendance() {
        }
     });
 
-    const data = [];
+    // Start from user's join date, end today
     const today = new Date();
-    for (let i = 180; i >= 0; i--) {
-      const d = subDays(today, i);
+    const start = user.joinedAt ? parseISO(user.joinedAt.slice(0, 10)) : today;
+    const days = eachDayOfInterval({ start, end: today });
+
+    // react-activity-calendar requires at least 2 entries and sorted ASC
+    return days.map(d => {
       const dateStr = format(d, 'yyyy-MM-dd');
       const count = dateCounts[dateStr] || 0;
-      
       let level = 0;
       if (count === 1) level = 1;
       else if (count === 2) level = 2;
       else if (count >= 3 && count <= 4) level = 3;
       else if (count > 4) level = 4;
-
-      data.push({ date: dateStr, count: count, level: level });
-    }
-    return data;
+      return { date: dateStr, count, level };
+    });
   };
 
   const activityData = getActivityData();
