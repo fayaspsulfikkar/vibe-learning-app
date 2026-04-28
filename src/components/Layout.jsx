@@ -37,32 +37,33 @@ function Sidebar() {
 
   return (
     <aside className="sidebar fade-in">
-      <div style={{ padding: '28px 24px 20px', borderBottom: '1px solid var(--border)' }}>
-        <h1 style={{ fontSize: '18px', color: 'var(--text)', marginBottom: '4px' }}>Vibe LMS</h1>
-        <div style={{ fontSize: '11px', color: 'var(--muted2)', letterSpacing: '0.05em' }}>
+      <div style={{ padding: '28px 20px 16px', borderBottom: '1px solid rgba(255,255,255,0.5)' }}>
+        <h1 style={{ fontSize: '17px', color: '#1a1a2e', marginBottom: '4px', fontWeight: 600 }}>Vibe LMS</h1>
+        <div style={{ fontSize: '10px', color: '#9898b8', letterSpacing: '0.05em' }}>
           LEARNING PLATFORM
         </div>
       </div>
       
       <div style={{ padding: '24px 24px', borderBottom: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: '20px' }}>
          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-           <span style={{ fontSize: '28px', fontWeight: 600, color: 'var(--text)', fontFamily: 'var(--font-head)', letterSpacing: '-0.02em' }}>
+           <span style={{ fontSize: '26px', fontWeight: 600, color: '#1a1a2e', fontFamily: 'var(--font-head)', letterSpacing: '-0.03em' }}>
              {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
            </span>
-           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', color: 'var(--success)', fontWeight: 600, letterSpacing: '0.05em' }}>
+           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '10px', color: '#10b981', fontWeight: 600, letterSpacing: '0.05em' }}>
              <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--success)', animation: 'pulse 2s infinite alternate', boxShadow: '0 0 8px var(--success)' }} />
              ATTENDANCE ACTIVE
            </div>
          </div>
          
          <div>
-            <div style={{ fontSize: '11px', color: 'var(--muted)', display: 'flex', justifyContent: 'space-between', marginBottom: '8px', letterSpacing: '0.05em', fontWeight: 600 }}>
-              <span>CURRENT SESSION</span>
-              <span style={{ color: 'var(--text)' }}>{formatStudyTime(studyTime)}</span>
-            </div>
-            <div style={{ height: '4px', background: 'var(--border)', borderRadius: '2px', overflow: 'hidden' }}>
-              <div style={{ height: '100%', width: '100%', background: 'var(--success)', animation: 'pulse 2s infinite alternate' }} />
-            </div>
+             <div style={{ fontSize: '10px', color: '#9898b8', display: 'flex', justifyContent: 'space-between', marginBottom: '6px', letterSpacing: '0.04em', fontWeight: 500 }}
+             >
+               <span>CURRENT SESSION</span>
+               <span style={{ color: '#1a1a2e' }}>{formatStudyTime(studyTime)}</span>
+             </div>
+             <div style={{ height: '3px', background: 'rgba(99,102,241,0.12)', borderRadius: '2px', overflow: 'hidden' }}>
+               <div style={{ height: '100%', width: '100%', background: 'var(--success)', animation: 'pulse 2s infinite alternate' }} />
+             </div>
          </div>
       </div>
 
@@ -83,10 +84,10 @@ function Sidebar() {
         ))}
       </nav>
       
-      <div style={{ padding: '16px', borderTop: '1px solid var(--border)' }}>
+      <div style={{ padding: '16px', borderTop: '1px solid rgba(255,255,255,0.5)' }}>
         <button 
           onClick={() => window.dispatchEvent(new Event('trigger-pwa-install'))}
-          style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 16px', color: 'var(--text)', background: 'var(--primary-glow)', borderRadius: 'var(--radius-sm)', transition: 'all 0.2s', marginBottom: '8px', border: '1px solid rgba(96, 184, 240, 0.2)' }}
+          style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 14px', color: '#6366f1', background: 'rgba(99,102,241,0.08)', borderRadius: '10px', transition: 'all 0.2s', marginBottom: '8px', border: '1px solid rgba(99,102,241,0.2)' }}
           className="install-btn"
         >
           <Download size={18} color="var(--primary)" />
@@ -94,7 +95,7 @@ function Sidebar() {
         </button>
         <button 
           onClick={handleLogout}
-          style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 16px', color: 'var(--muted)', borderRadius: 'var(--radius-sm)', transition: 'background 0.2s' }}
+          style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 14px', color: '#9898b8', borderRadius: '10px', transition: 'background 0.2s', fontSize: '13px' }}
           className="logout-btn"
         >
           <LogOut size={18} />
@@ -107,31 +108,33 @@ function Sidebar() {
           display: flex;
           align-items: center;
           gap: 12px;
-          padding: 12px 16px;
-          border-radius: var(--radius-sm);
-          color: var(--muted);
-          font-weight: 500;
-          transition: all 0.2s;
+          padding: 10px 14px;
+          border-radius: 10px;
+          color: #6b6b8a;
+          font-weight: 400;
+          transition: all 0.25s cubic-bezier(0.34, 1.2, 0.64, 1);
+          font-size: 13px;
         }
         .nav-item:hover {
-          background: var(--surface);
-          color: var(--text);
+          background: rgba(255,255,255,0.5);
+          color: #1a1a2e;
         }
         .nav-item.active {
-          background: var(--primary-glow);
-          color: var(--primary);
-          border-left: 3px solid var(--primary);
+          background: rgba(99,102,241,0.12);
+          color: #6366f1;
+          border-left: 2px solid #6366f1;
+          padding-left: 12px;
         }
         .install-btn:hover {
-          background: rgba(96, 184, 240, 0.2) !important;
+          background: rgba(99,102,241,0.1) !important;
         }
         .logout-btn:hover {
-          background: rgba(239, 68, 68, 0.1);
-          color: var(--danger);
+          background: rgba(239,68,68,0.08);
+          color: #ef4444;
         }
         @keyframes pulse {
-          from { opacity: 0.6; }
-          to { opacity: 1; }
+          from { opacity: 0.6; box-shadow: 0 0 4px var(--success); }
+          to   { opacity: 1; box-shadow: 0 0 10px var(--success); }
         }
       `}</style>
     </aside>
