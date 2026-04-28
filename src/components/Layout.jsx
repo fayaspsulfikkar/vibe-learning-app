@@ -138,17 +138,39 @@ function Sidebar() {
   );
 }
 
+function BottomNav() {
+  const navLinks = [
+    { to: '/', icon: <LayoutDashboard size={20} />, label: 'Home' },
+    { to: '/course', icon: <BookOpen size={20} />, label: 'Course' },
+    { to: '/attendance', icon: <Clock size={20} />, label: 'Insights' },
+    { to: '/quiz', icon: <BrainCircuit size={20} />, label: 'Quiz' },
+    { to: '/account', icon: <User size={20} />, label: 'Profile' }
+  ];
+
+  return (
+    <nav className="bottom-nav">
+      {navLinks.map(link => (
+        <NavLink key={link.to} to={link.to} className={({isActive}) => isActive ? 'b-nav-item active' : 'b-nav-item'}>
+           {link.icon}
+           <span>{link.label}</span>
+        </NavLink>
+      ))}
+    </nav>
+  )
+}
+
 export function Layout() {
   const { user } = useAuth();
   
   return (
     <div className="app-layout">
       {user && <Sidebar />}
-      <main className="main-content" style={{ marginLeft: user ? '260px' : '0' }}>
-        <div style={{ padding: '32px 48px', maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
+      <main className={user ? "main-content auth-main" : "main-content"}>
+        <div className="page-container">
           <Outlet />
         </div>
       </main>
+      {user && <BottomNav />}
     </div>
   );
 }

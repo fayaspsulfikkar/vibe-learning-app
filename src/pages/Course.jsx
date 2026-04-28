@@ -54,7 +54,7 @@ export default function Course() {
   };
 
   return (
-    <div className="fade-in" style={{ padding: '0 0 80px 0', marginLeft: '-48px', marginRight: '-48px', marginTop: '-32px' }}>
+    <div className="fade-in course-wrapper">
       
       <div className="hero">
         <div className="hero-tag">6-Month Self-Learning Plan</div>
