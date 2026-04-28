@@ -21,25 +21,25 @@ export default function Quiz() {
   return (
     <div className="fade-in" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '70vh' }}>
       {!finished ? (
-        <div className="glass-panel" style={{ padding: '56px 48px', width: '100%', maxWidth: '640px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px', color: 'var(--muted)', fontSize: '13px', fontWeight: 400, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-            <span>Question {current + 1} / {DUMMY_QUIZ.length}</span>
+        <div className="glass-panel" style={{ width: '100%', maxWidth: '640px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '32px' }} className="panel-label">
+            <span style={{ textTransform: 'uppercase', letterSpacing: '0.05em' }}>Question {current + 1} / {DUMMY_QUIZ.length}</span>
             <span>Score: {score}</span>
           </div>
 
-          <h2 style={{ fontSize: '28px', fontWeight: 300, marginBottom: '48px', lineHeight: 1.4 }}>{DUMMY_QUIZ[current].question}</h2>
+          <h2 className="page-title" style={{ marginBottom: '40px', lineHeight: 1.4 }}>{DUMMY_QUIZ[current].question}</h2>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '48px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '48px' }}>
             {DUMMY_QUIZ[current].options.map((opt, idx) => (
               <button
                 key={idx}
                 onClick={() => setSelected(idx)}
                 style={{
-                  padding: '20px 24px', textAlign: 'left',
+                  padding: '16px 20px', textAlign: 'left',
                   background: selected === idx ? 'var(--primary-glow)' : 'rgba(0,0,0,0.2)',
                   border: `1px solid ${selected === idx ? 'var(--primary)' : 'rgba(255,255,255,0.03)'}`,
                   borderRadius: 'var(--radius-sm)', color: selected === idx ? 'var(--primary)' : 'var(--text)',
-                  fontSize: '16px', fontWeight: 300, transition: 'all 0.2s ease', cursor: 'pointer'
+                  fontSize: '15px', fontWeight: 300, transition: 'all 0.2s ease', cursor: 'pointer'
                 }}
               >
                 {opt}
@@ -51,7 +51,7 @@ export default function Quiz() {
              <button 
               onClick={handleNext} disabled={selected === null}
               className="btn-primary" 
-              style={{ opacity: selected === null ? 0.3 : 1, padding: '14px 28px', display: 'flex', alignItems: 'center', gap: '12px', fontWeight: 400 }}
+              style={{ opacity: selected === null ? 0.3 : 1 }}
              >
                {current === DUMMY_QUIZ.length - 1 ? 'Finish Quiz' : 'Next Question'}
                <ArrowRight size={18} />
@@ -59,15 +59,17 @@ export default function Quiz() {
           </div>
         </div>
       ) : (
-        <div className="glass-panel fade-in" style={{ padding: '64px 48px', width: '100%', maxWidth: '640px', textAlign: 'center' }}>
-           <div style={{ width: '96px', height: '96px', borderRadius: '50%', background: score === DUMMY_QUIZ.length ? 'rgba(93, 216, 168, 0.1)' : 'rgba(251, 146, 60, 0.1)', color: score === DUMMY_QUIZ.length ? 'var(--success)' : 'var(--warn)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 32px' }}>
-              {score === DUMMY_QUIZ.length ? <CheckCircle2 size={48} strokeWidth={1} /> : <XCircle size={48} strokeWidth={1} />}
+        <div className="glass-panel fade-in" style={{ width: '100%', maxWidth: '640px', textAlign: 'center' }}>
+           <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: score === DUMMY_QUIZ.length ? 'rgba(93, 216, 168, 0.1)' : 'rgba(251, 146, 60, 0.1)', color: score === DUMMY_QUIZ.length ? 'var(--success)' : 'var(--warn)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
+              {score === DUMMY_QUIZ.length ? <CheckCircle2 size={40} strokeWidth={1} /> : <XCircle size={40} strokeWidth={1} />}
            </div>
-           <h2 style={{ fontSize: '36px', fontWeight: 300, marginBottom: '20px' }}>Quiz Completed</h2>
-           <p style={{ color: 'var(--muted)', fontSize: '16px', fontWeight: 400, marginBottom: '48px' }}>
-              You scored <strong style={{ color: 'var(--text)', fontSize: '24px', fontWeight: 300, margin: '0 8px' }}>{score}</strong> out of {DUMMY_QUIZ.length}.
+           <h2 className="page-title">Quiz Completed</h2>
+           <p className="page-desc" style={{ marginBottom: '40px' }}>
+              You scored <strong style={{ color: 'var(--text)', fontSize: '20px', fontWeight: 300, margin: '0 8px' }}>{score}</strong> out of {DUMMY_QUIZ.length}.
            </p>
-           <button onClick={() => { setCurrent(0); setSelected(null); setScore(0); setFinished(false); }} className="btn-accent" style={{ padding: '16px 32px', fontWeight: 400 }}>Retake Module Quiz</button>
+           <div style={{ display: 'flex', justifyContent: 'center' }}>
+             <button onClick={() => { setCurrent(0); setSelected(null); setScore(0); setFinished(false); }} className="btn-accent">Retake Module Quiz</button>
+           </div>
         </div>
       )}
     </div>

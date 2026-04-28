@@ -46,47 +46,47 @@ export default function Attendance() {
 
   return (
     <div className="fade-in">
-      <header style={{ marginBottom: '56px', marginTop: '8px' }}>
-        <h1 style={{ fontSize: '32px', fontWeight: 300, marginBottom: '12px', letterSpacing: '-0.02em' }}>Analytics & Progress</h1>
-        <p style={{ color: 'var(--muted)', fontSize: '15px', fontWeight: 400, letterSpacing: '0.01em' }}>Measure your consistency through active study time and modules completed.</p>
+      <header className="header-spacing">
+        <h1 className="page-title">Analytics & Progress</h1>
+        <p className="page-desc">Measure your consistency through active study time and modules completed.</p>
       </header>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px', marginBottom: '48px' }}>
-        <div className="glass-panel" style={{ padding: '36px 32px' }}>
+      <div className="stat-grid">
+        <div className="glass-panel">
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
             <div style={{ padding: '10px', background: 'var(--primary-glow)', borderRadius: 'var(--radius-sm)' }}>
               <Clock size={20} color="var(--primary)" />
             </div>
-            <span style={{ color: 'var(--muted)', fontWeight: 400, fontSize: '14px', letterSpacing: '0.02em' }}>Total Study Minutes</span>
+            <span className="panel-label">Total Study Minutes</span>
           </div>
-          <h2 style={{ fontSize: '48px', fontWeight: 300, letterSpacing: '-0.03em' }}>{studyTime}</h2>
+          <h2 className="stat-val">{studyTime}</h2>
         </div>
         
-        <div className="glass-panel" style={{ padding: '36px 32px' }}>
+        <div className="glass-panel">
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
             <div style={{ padding: '10px', background: 'rgba(52, 211, 153, 0.1)', borderRadius: 'var(--radius-sm)' }}>
               <Award size={20} color="var(--success)" />
             </div>
-            <span style={{ color: 'var(--muted)', fontWeight: 400, fontSize: '14px', letterSpacing: '0.02em' }}>Modules Finished</span>
+            <span className="panel-label">Modules Finished</span>
           </div>
-          <h2 style={{ fontSize: '48px', fontWeight: 300, letterSpacing: '-0.03em' }}>{totalTasksDone}</h2>
+          <h2 className="stat-val">{totalTasksDone}</h2>
         </div>
         
-        <div className="glass-panel" style={{ padding: '36px 32px' }}>
+        <div className="glass-panel">
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
             <div style={{ padding: '10px', background: 'var(--accent-glow)', borderRadius: 'var(--radius-sm)' }}>
               <TrendingUp size={20} color="var(--accent)" />
             </div>
-            <span style={{ color: 'var(--muted)', fontWeight: 400, fontSize: '14px', letterSpacing: '0.02em' }}>Best Session</span>
+            <span className="panel-label">Best Session</span>
           </div>
-          <h2 style={{ fontSize: '48px', fontWeight: 300, letterSpacing: '-0.03em' }}>{Math.max(...attendance.map(a => a.minutes), 0)}m</h2>
+          <h2 className="stat-val">{Math.max(...attendance.map(a => a.minutes), 0)}m</h2>
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr)', gap: '48px' }}>
-        <div className="glass-panel" style={{ padding: '40px', overflowX: 'auto' }}>
-           <h3 style={{ fontSize: '18px', fontWeight: 500, marginBottom: '12px' }}>Module Completions</h3>
-           <p style={{ color: 'var(--muted)', fontSize: '14px', fontWeight: 400, marginBottom: '40px' }}>A daily record of course checklist items completed.</p>
+      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr)', gap: '32px' }}>
+        <div className="glass-panel" style={{ overflowX: 'auto' }}>
+           <h3 className="panel-title">Module Completions</h3>
+           <p className="page-desc" style={{ marginBottom: '32px' }}>A daily record of course checklist items completed.</p>
            
            <div style={{ display: 'flex', justifyContent: 'center' }}>
              <ActivityCalendar 
@@ -106,14 +106,14 @@ export default function Attendance() {
            </div>
         </div>
 
-        <div className="glass-panel" style={{ padding: '40px' }}>
-          <h3 style={{ fontSize: '18px', fontWeight: 500, marginBottom: '12px' }}>Active Attendance History</h3>
-          <p style={{ color: 'var(--muted)', fontSize: '14px', fontWeight: 400, marginBottom: '48px' }}>Charted active minutes logged into the learning platform daily.</p>
+        <div className="glass-panel">
+          <h3 className="panel-title">Active Attendance History</h3>
+          <p className="page-desc" style={{ marginBottom: '32px' }}>Charted active minutes logged into the learning platform daily.</p>
           
           {attendance.length === 0 ? (
-            <p style={{ color: 'var(--muted)', textAlign: 'center', padding: '60px 0', fontWeight: 300 }}>No attendance sessions recorded yet. Start learning!</p>
+            <p className="page-desc" style={{ textAlign: 'center', padding: '60px 0' }}>No attendance sessions recorded yet. Start learning!</p>
           ) : (
-            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '24px', height: '240px', paddingBottom: '24px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '24px', height: '200px', paddingBottom: '24px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
               {attendance.slice(-14).map((record, idx) => {
                 const heightPct = Math.max((record.minutes / maxMinutes) * 100, 5);
                 return (
@@ -127,11 +127,11 @@ export default function Attendance() {
                       transition: 'height 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
                       position: 'relative'
                     }}>
-                       <span style={{ position: 'absolute', top: '-32px', left: '50%', transform: 'translateX(-50%)', fontSize: '12px', color: 'var(--text)', fontWeight: 400 }}>
+                       <span style={{ position: 'absolute', top: '-24px', left: '50%', transform: 'translateX(-50%)', fontSize: '11px', color: 'var(--text)', fontWeight: 400 }}>
                           {record.minutes}
                        </span>
                     </div>
-                    <span style={{ fontSize: '12px', color: 'var(--muted2)', transform: 'rotate(-45deg)', transformOrigin: 'top left', marginTop: '16px', whiteSpace: 'nowrap' }}>
+                    <span style={{ fontSize: '11px', color: 'var(--muted2)', transform: 'rotate(-45deg)', transformOrigin: 'top left', marginTop: '12px', whiteSpace: 'nowrap' }}>
                       {record.date.slice(0, 5)}
                     </span>
                   </div>
