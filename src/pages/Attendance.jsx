@@ -5,14 +5,14 @@ import { ActivityCalendar } from 'react-activity-calendar';
 import { subDays, format } from 'date-fns';
 
 export default function Attendance() {
-  const { attendance, studyTime } = useAuth();
+  const { attendance, studyTime, user } = useAuth();
   const [taskData, setTaskData] = useState({});
 
   useEffect(() => {
-    // Load tasks from local storage
-    const savedTasks = JSON.parse(localStorage.getItem('vibe_tasks') || '{}');
+    // Load explicitly scoped tasks from local storage
+    const savedTasks = JSON.parse(localStorage.getItem(`vibe_tasks_${user.email}`) || '{}');
     setTaskData(savedTasks);
-  }, []);
+  }, [user]);
 
   const maxMinutes = Math.max(...attendance.map(a => a.minutes), 60);
   const totalTasksDone = Object.keys(taskData).filter(k => taskData[k]).length;

@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { courseData } from '../data/courseData';
 
+import { useAuth } from '../context/AuthContext';
+
 export default function Course() {
+  const { user } = useAuth();
   const [data, setData] = useState([]);
-  const [taskState, setTaskState] = useState(() => JSON.parse(localStorage.getItem('vibe_tasks') || '{}'));
-  const [taskNotes, setTaskNotes] = useState(() => JSON.parse(localStorage.getItem('vibe_notes') || '{}'));
+  const [taskState, setTaskState] = useState(() => JSON.parse(localStorage.getItem(`vibe_tasks_${user.email}`) || '{}'));
+  const [taskNotes, setTaskNotes] = useState(() => JSON.parse(localStorage.getItem(`vibe_notes_${user.email}`) || '{}'));
 
   // By default make phase 1 open, others closed like original
   const [openPhases, setOpenPhases] = useState({ p1: true });
@@ -24,7 +27,7 @@ export default function Course() {
         const d = new Date();
         updated[taskId] = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
       }
-      localStorage.setItem('vibe_tasks', JSON.stringify(updated));
+      localStorage.setItem(`vibe_tasks_${user.email}`, JSON.stringify(updated));
       return updated;
     });
   };
@@ -32,7 +35,7 @@ export default function Course() {
   const updateNote = (taskId, text) => {
     setTaskNotes(prev => {
       const updated = { ...prev, [taskId]: text };
-      localStorage.setItem('vibe_notes', JSON.stringify(updated));
+      localStorage.setItem(`vibe_notes_${user.email}`, JSON.stringify(updated));
       return updated;
     });
   };
