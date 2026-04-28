@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, BookOpen, Clock, BrainCircuit, User, LogOut } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Clock, BrainCircuit, User, LogOut, Download } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 function Sidebar() {
@@ -85,6 +85,14 @@ function Sidebar() {
       
       <div style={{ padding: '16px', borderTop: '1px solid var(--border)' }}>
         <button 
+          onClick={() => window.dispatchEvent(new Event('trigger-pwa-install'))}
+          style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 16px', color: 'var(--text)', background: 'var(--primary-glow)', borderRadius: 'var(--radius-sm)', transition: 'all 0.2s', marginBottom: '8px', border: '1px solid rgba(96, 184, 240, 0.2)' }}
+          className="install-btn"
+        >
+          <Download size={18} color="var(--primary)" />
+          <span style={{ fontWeight: 600 }}>Install as App</span>
+        </button>
+        <button 
           onClick={handleLogout}
           style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 16px', color: 'var(--muted)', borderRadius: 'var(--radius-sm)', transition: 'background 0.2s' }}
           className="logout-btn"
@@ -113,6 +121,9 @@ function Sidebar() {
           background: var(--primary-glow);
           color: var(--primary);
           border-left: 3px solid var(--primary);
+        }
+        .install-btn:hover {
+          background: rgba(96, 184, 240, 0.2) !important;
         }
         .logout-btn:hover {
           background: rgba(239, 68, 68, 0.1);

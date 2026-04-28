@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import { Layout } from './components/Layout';
+import InstallPrompt from './components/InstallPrompt';
 
 // Pages
 import Login from './pages/Login';
@@ -16,19 +17,20 @@ function PrivateRoute({ children }) {
   return user ? children : <Navigate to="/login" />;
 }
 
-function App() {
+export default function App() {
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/" element={<PrivateRoute><Layout /></PrivateRoute>}>
-        <Route index element={<Dashboard />} />
-        <Route path="course" element={<Course />} />
-        <Route path="attendance" element={<Attendance />} />
-        <Route path="quiz" element={<Quiz />} />
-        <Route path="account" element={<Account />} />
-      </Route>
-    </Routes>
+    <>
+      <InstallPrompt />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<PrivateRoute><Layout /></PrivateRoute>}>
+          <Route index element={<Dashboard />} />
+          <Route path="course" element={<Course />} />
+          <Route path="attendance" element={<Attendance />} />
+          <Route path="quiz" element={<Quiz />} />
+          <Route path="account" element={<Account />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
-
-export default App;
